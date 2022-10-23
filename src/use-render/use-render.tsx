@@ -13,11 +13,13 @@ class RenderController extends Controller {
   declare values: () => Object
 }
 
-export const useRender = (controller: RenderController, options: RenderOptions = {}) => {
-  if (!controller) {
+export const useRender = (stimulusController: Controller, options: RenderOptions = {}) => {
+  if (!stimulusController) {
     console.error("Make sure you pass in `this` to `useRender(this)` in your Stimulus Controller.")
     return
   }
+
+  const controller = stimulusController as RenderController
 
   useValues(controller)
 

@@ -20,13 +20,14 @@
   },
   "peerDependencies": {
     "@hotwired/stimulus": ">=3",
-    "stimulus": ">=3",
-    "lit-html": ">=2.4.0"
+    "lit-html": ">=2.4.0",
+    "stimulus": ">=3"
   },
   "devDependencies": {
     "@hotwired/stimulus": ">=3",
     "@rollup/plugin-node-resolve": "^13.0.5",
     "@rollup/plugin-typescript": "^8.2.5",
+    "lit-html": "^2.4.0",
     "rimraf": "^3.0.2",
     "rollup": "^2.57.0",
     "rollup-plugin-filesize": "^9.1.1",
