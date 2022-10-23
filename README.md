@@ -1,4 +1,4 @@
-# Stimulus Render
+# Stimulus Lit
 
 ## Getting Started
 
