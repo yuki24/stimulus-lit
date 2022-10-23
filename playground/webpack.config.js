@@ -26,9 +26,6 @@ module.exports = {
         use: {
           loader: 'babel-loader',
           options: {
-            presets: [
-              '@babel/preset-react'
-            ],
             plugins: [
               '@babel/plugin-proposal-class-properties',
               [ '@babel/plugin-transform-runtime', { regenerator: true } ]
