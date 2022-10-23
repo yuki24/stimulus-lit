@@ -23,7 +23,7 @@
     "stimulus": ">=3"
   },
   "dependencies": {
-    "@luwes/little-vdom": "^0.3.2"
+    "lit-html": "^2.4.0"
   },
   "devDependencies": {
     "@hotwired/stimulus": ">=3",

@@ -1,9 +1,7 @@
 // list_controller.js
 
 import { Controller } from '@hotwired/stimulus'
-import { useRender, h } from 'stimulus-render'
-
-/** @jsx h */
+import { useRender, html } from 'stimulus-render'
 
 export default class extends Controller {
   static targets = ['item']
@@ -13,10 +11,10 @@ export default class extends Controller {
   }
 
   renderListTarget(target) {
-    return (
+    return html`
       <span>
-        {marked.parse(target.dataset.value)}
+        ${target.dataset.value}
       </span>
-    )
+    `
   }
 }

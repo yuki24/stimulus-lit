@@ -1,9 +1,7 @@
 // hello_world_controller.js
 
 import { Controller } from '@hotwired/stimulus'
-import { useRender, h } from 'stimulus-render'
-
-/** @jsx h */
+import { useRender, html } from 'stimulus-render'
 
 export default class extends Controller {
   connect() {
@@ -11,6 +9,6 @@ export default class extends Controller {
   }
 
   render () {
-    return <div>Hello World {1 + 1}</div>
+    return html`<div>Hello World ${1 + 1}</div>`
   }
 }

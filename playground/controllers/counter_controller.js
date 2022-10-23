@@ -1,26 +1,26 @@
 import { Controller } from '@hotwired/stimulus'
-import { useRender, h } from 'stimulus-render'
-
-/** @jsx h */
+import { useRender, html } from 'stimulus-render'
 
 export default class extends Controller {
-  static values = { counter: 1 }
+  static values = {
+    counter: 1
+  }
 
   connect () {
     useRender(this)
   }
 
-  increment () {
+  increment = () => {
     this.counterValue += 1
   }
 
   render () {
-    return (
+    return html`
       <div id="counter">
-        <button data-action="click->counter#increment">
-          Count: {this.counterValue}
+        <button @click="${this.increment}">
+          Count: ${this.counterValue}
         </button>
       </div>
-    )
+    `
   }
 }

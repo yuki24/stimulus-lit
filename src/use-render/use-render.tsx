@@ -1,19 +1,10 @@
 import { Controller } from '@hotwired/stimulus'
-import { method, camelize } from '../support/index'
-import { render, h } from '@luwes/little-vdom'
+import { html, render, RenderOptions } from "lit-html";
+
+import { method, camelize } from '../support'
 import { useValues } from './values'
 
-export interface RenderOptions {
-  defaultContent?: any
-}
-
-const defaultOptions: RenderOptions = {
-  defaultContent: (controller: string) => (
-    <div>
-      Default content for <span style={{ background: "lightgray", padding: "2px", color: "black", }}>{controller}</span> Controller
-    </div>
-  )
-}
+const EMPTY_HTML = html``
 
 class RenderController extends Controller {
   declare __render: () => void
@@ -23,8 +14,6 @@ class RenderController extends Controller {
 }
 
 export const useRender = (controller: RenderController, options: RenderOptions = {}) => {
-  const { defaultContent } = Object.assign({}, defaultOptions, options)
-
   if (!controller) {
     console.error("Make sure you pass in `this` to `useRender(this)` in your Stimulus Controller.")
     return
@@ -33,9 +22,6 @@ export const useRender = (controller: RenderController, options: RenderOptions =
   useValues(controller)
 
   const constructor = controller.constructor as any
-  // const controllerConnect = controller.connect.bind(controller)
-  // const controllerDisconnect = controller.disconnect.bind(controller)
-
   const renderMethod = method(controller, 'render')
 
   Object.assign(controller, {
@@ -45,15 +31,7 @@ export const useRender = (controller: RenderController, options: RenderOptions =
     },
 
     __render() {
-      let content = null
-
-      if (renderMethod) {
-        content = renderMethod.call(controller)
-      } else {
-        content = defaultContent(controller.identifier)
-      }
-
-      render(content, controller.element)
+      render(renderMethod?.call(controller) || EMPTY_HTML, controller.element as HTMLElement, options)
     }
   })
 
