@@ -17,9 +17,7 @@ yarn add stimulus-render
 // app/javascript/controllers/counter_controller.js
 
 import { Controller } from '@hotwired/stimulus'
-import { useRender, h } from 'stimulus-render'
-
-/** @jsx h */
+import { useRender, html } from 'stimulus-render'
 
 export default class extends Controller {
   static values = { counter: 1 }
@@ -33,53 +31,13 @@ export default class extends Controller {
   }
 
   render () {
-    return (
+    return html`
       <div id="counter">
-        <button data-action="click->counter#increment">
-          Count: {this.counterValue}
+        <button @click="${this.increment}">
+          Count: ${this.counterValue}
         </button>
       </div>
-    )
-  }
-}
-```
-
-### List/Item Example
-
-
-```html
-<div data-controller="list">
-  <ul>
-    <li data-list-target="item" data-value="# Title 1"></li>
-    <li data-list-target="item" data-value="**Two Bold**"></li>
-    <li data-list-target="item" data-value="[Three Link](https://github.com/marcoroth/stimulus-render)"></li>
-  </ul>
-</div>
-```
-
-
-```js
-// app/javascript/controllers/list_controller.js
-
-import { Controller } from '@hotwired/stimulus'
-import { useRender, h } from 'stimulus-render'
-import { processMarkdown } from 'some-markdown-rendering-package'
-
-/** @jsx h */
-
-export default class extends Controller {
-  static targets = ['item']
-
-  connect () {
-    useRender(this)
-  }
-
-  renderItemTarget(target) {
-    return (
-      <span>
-        {processMarkdown(target.dataset.value)}
-      </span>
-    )
+    `
   }
 }
 ```
