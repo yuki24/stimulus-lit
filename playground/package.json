@@ -1,12 +1,12 @@
 {
-  "name": "stimulus-render-playground",
+  "name": "stimulus-lit-playground",
   "version": "0.1.0",
   "description": "A playground for Stimulus Render",
   "license": "MIT",
-  "repository": "https://github.com/marcoroth/stimulus-render",
+  "repository": "https://github.com/marcoroth/stimulus-lit",
   "dependencies": {
     "@hotwired/stimulus": "^3.0.0",
-    "stimulus-render": "link:../"
+    "stimulus-lit": "link:../"
   },
   "scripts": {
     "start": "webpack-dev-server --mode development --open"

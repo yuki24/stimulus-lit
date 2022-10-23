@@ -1,5 +1,5 @@
 import { Controller } from '@hotwired/stimulus'
-import { useRender, html } from 'stimulus-render'
+import { useRender, html } from 'stimulus-lit'
 
 export default class extends Controller {
   static values = {

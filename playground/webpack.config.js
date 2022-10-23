@@ -10,7 +10,7 @@ module.exports = {
   },
   resolve: {
     alias: {
-      'stimulus-render': path.resolve(__dirname, '../dist/index.js')
+      'stimulus-lit': path.resolve(__dirname, '../dist/index.js')
     }
   },
   devServer: {

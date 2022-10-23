@@ -3,7 +3,7 @@
 ## Getting Started
 
 ```bash
-yarn add stimulus-render
+yarn add stimulus-lit
 ```
 
 ### Counter Example
@@ -17,7 +17,7 @@ yarn add stimulus-render
 // app/javascript/controllers/counter_controller.js
 
 import { Controller } from '@hotwired/stimulus'
-import { useRender, html } from 'stimulus-render'
+import { useRender, html } from 'stimulus-lit'
 
 export default class extends Controller {
   static values = { counter: 1 }

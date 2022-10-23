@@ -1,14 +1,14 @@
 {
-  "name": "stimulus-render",
+  "name": "stimulus-lit",
   "version": "0.1.0-beta1",
-  "description": "Provides a HTML rendering mechanism for Stimulus Controllers",
+  "description": "HTML rendering with lit-html for Stimulus Controllers",
   "main": "dist/index.js",
   "module": "dist/index.js",
   "unpkg": "dist/index.umd.js",
   "types": "dist/types/index.d.ts",
-  "author": "Marco Roth",
+  "author": "Yuki Nishijima",
   "license": "MIT",
-  "repository": "https://github.com/marcoroth/stimulus-render",
+  "repository": "https://github.com/yuki24/stimulus-lit",
   "sideEffects": false,
   "scripts": {
     "start": "cd playground && yarn start",
@@ -20,16 +20,13 @@
   },
   "peerDependencies": {
     "@hotwired/stimulus": ">=3",
-    "stimulus": ">=3"
-  },
-  "dependencies": {
-    "lit-html": "^2.4.0"
+    "stimulus": ">=3",
+    "lit-html": ">=2.4.0"
   },
   "devDependencies": {
     "@hotwired/stimulus": ">=3",
     "@rollup/plugin-node-resolve": "^13.0.5",
     "@rollup/plugin-typescript": "^8.2.5",
-    "@types/react-dom": "^17.0.11",
     "rimraf": "^3.0.2",
     "rollup": "^2.57.0",
     "rollup-plugin-filesize": "^9.1.1",
