@@ -10,13 +10,19 @@
   "license": "MIT",
   "repository": "https://github.com/yuki24/stimulus-lit",
   "sideEffects": false,
+  "files": [
+    "dist/*.js",
+    "dist/*.js.map",
+    "dist/types/**/*"
+  ],
   "scripts": {
-    "start": "cd playground && yarn start",
-    "prebuild": "yarn clean",
-    "build": "tsc --noEmit false --declaration true --emitDeclarationOnly true --outDir dist/types --jsx react && rollup -c",
-    "dev": "rollup -wc",
+    "build": "tsc --noEmit false --declaration true --emitDeclarationOnly true --outDir dist/types && rollup -c",
     "clean": "rimraf dist",
-    "prerelease": "yarn build"
+    "dev": "rollup -wc",
+    "prebuild": "yarn clean",
+    "prerelease": "yarn build",
+    "release": "npm publish --access public",
+    "start": "cd playground && yarn start"
   },
   "peerDependencies": {
     "@hotwired/stimulus": ">=3",

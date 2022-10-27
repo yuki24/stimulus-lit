@@ -1,38 +1,54 @@
-import resolve from '@rollup/plugin-node-resolve'
-import typescript from '@rollup/plugin-typescript'
-import filesize from 'rollup-plugin-filesize'
+import resolve from "@rollup/plugin-node-resolve";
+import typescript from "@rollup/plugin-typescript";
+import filesize from "rollup-plugin-filesize";
 
-import { version } from './package.json'
-const year = new Date().getFullYear()
-const banner = `/*\nStimulus Render ${version}\n*/`
+import { version } from "./package.json";
+const banner = `/*\nStimulus Lit ${version}\n*/`;
 
 export default [
   {
-    input: 'src/index.ts',
-    external: ['@hotwired/stimulus'],
+    input: "src/index.ts",
+    external: ["@hotwired/stimulus", "lit-html"],
     output: [
       {
-        name: 'StimulusRender',
-        file: 'dist/index.umd.js',
-        format: 'umd',
+        name: "Stimulus Lit",
+        file: "dist/index.umd.js",
+        format: "umd",
+        sourcemap: true,
         banner,
         globals: {
-          '@hotwired/stimulus': 'Stimulus'
-        }
+          "@hotwired/stimulus": "Stimulus",
+          "lit-html": "Lit",
+        },
       },
-      {
-        file: 'dist/index.js',
-        format: 'es',
-        banner
-      }
     ],
     plugins: [
       resolve(),
-      typescript(),
-      filesize()
+      typescript({ target: "es5", downlevelIteration: true }),
+      filesize(),
     ],
     watch: {
-      include: 'src/**'
-    }
-  }
-]
+      include: "src/**",
+    },
+  },
+  {
+    input: "src/index.ts",
+    external: ["@hotwired/stimulus", "lit-html"],
+    output: [
+      {
+        file: "dist/index.js",
+        format: "es",
+        sourcemap: true,
+        banner,
+        globals: {
+          "@hotwired/stimulus": "Stimulus",
+          "lit-html": "Lit",
+        },
+      },
+    ],
+    plugins: [resolve(), typescript(), filesize()],
+    watch: {
+      include: "src/**",
+    },
+  },
+];
