@@ -59,7 +59,7 @@ describe("render()", () => {
         This text should not be deleted.
 
         <div data-render-target="container">
-          This text should be overridden by the controller. This text should be overridden by the controller.
+          This element should include the rendered html. This element should include the rendered html.
         </div>
       </div>
     `)
@@ -69,7 +69,7 @@ describe("render()", () => {
         This text should not be deleted.
 
         <div data-render-target="container">
-          This text should be overridden by the controller. This text should be overridden by the controller.
+          This element should include the rendered html. This element should include the rendered html.
           <div>
             rendered.
           </div>
@@ -86,7 +86,7 @@ describe("render()", () => {
         This text should not be deleted.
 
         <div data-render-target="container">
-          This text should be overridden by the controller. This text should be overridden by the controller.
+          The html should be rendered above this element. The html should be rendered above this element.
         </div>
       </div>
     `)
@@ -99,7 +99,7 @@ describe("render()", () => {
           rendered.
         </div>
         <div data-render-target="container">
-          This text should be overridden by the controller. This text should be overridden by the controller.
+          The html should be rendered above this element. The html should be rendered above this element.
         </div>
       </div>
     `)
