@@ -1,8 +1,8 @@
-import { Controller } from '@hotwired/stimulus'
+import { Controller } from "@hotwired/stimulus"
 
 export const method = (controller: Controller, methodName: string): Function | undefined => {
   const method = (controller as any)[methodName]
-  if (typeof method == 'function') {
+  if (typeof method == "function") {
     return method
   } else {
     return undefined

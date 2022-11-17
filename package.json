@@ -21,6 +21,8 @@
     "dev": "rollup -wc",
     "prebuild": "yarn clean",
     "prerelease": "yarn build",
+    "prettier-project": "prettier --write '{src,test}/**/*.ts'",
+    "prettier-write": "prettier --write",
     "release": "npm publish --access public",
     "start": "cd playground && yarn start",
     "test": "web-test-runner",
