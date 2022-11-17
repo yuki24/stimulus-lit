@@ -1,7 +1,13 @@
 import { fixture, expect, html } from "@open-wc/testing"
 
 import { register } from "./setup"
-import { RenderController, CounterController, NoRenderController, RenderInElementController } from "./fixtures"
+import {
+  RenderController,
+  CounterController,
+  NoRenderController,
+  RenderInElementController,
+  RenderBeforeController,
+} from "./fixtures"
 
 describe("render()", () => {
   it("can render html", async () => {
@@ -67,6 +73,33 @@ describe("render()", () => {
           <div>
             rendered.
           </div>
+        </div>
+      </div>
+    `)
+  })
+
+  it("can render before the specified element", async () => {
+    register("render", RenderBeforeController)
+
+    const el = await fixture(html`
+      <div data-controller="render">
+        This text should not be deleted.
+
+        <div data-render-target="container">
+          This text should be overridden by the controller. This text should be overridden by the controller.
+        </div>
+      </div>
+    `)
+
+    expect(el).dom.to.equal(`
+      <div data-controller="render">
+        This text should not be deleted.
+
+        <div>
+          rendered.
+        </div>
+        <div data-render-target="container">
+          This text should be overridden by the controller. This text should be overridden by the controller.
         </div>
       </div>
     `)
