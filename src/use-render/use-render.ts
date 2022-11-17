@@ -1,7 +1,7 @@
-import { Controller } from '@hotwired/stimulus'
-import { html, render, RenderOptions } from "lit-html";
+import { Controller } from "@hotwired/stimulus"
+import { html, render, RenderOptions } from "lit-html"
 
-import { method, camelize } from '../support'
+import { method, camelize } from "../support"
 
 const EMPTY_HTML = html``
 
@@ -10,7 +10,11 @@ class RenderController extends Controller {
   declare __rerender: () => void
 }
 
-export const useRender = (stimulusController: Controller, options: RenderOptions = {}) => {
+interface UseRenderOptions extends RenderOptions {
+  container?: HTMLElement | DocumentFragment
+}
+
+export const useRender = (stimulusController: Controller, options: UseRenderOptions = {}) => {
   if (!stimulusController) {
     console.error("Make sure you pass in `this` to `useRender(this)` in your Stimulus Controller.")
     return
@@ -18,7 +22,8 @@ export const useRender = (stimulusController: Controller, options: RenderOptions
 
   const controller = stimulusController as RenderController
   const constructor = controller.constructor as any
-  const renderMethod = method(controller, 'render')
+  const renderMethod = method(controller, "render")
+  const { container, ...renderOptions } = options
 
   Object.assign(controller, {
     __rerender() {
@@ -26,8 +31,12 @@ export const useRender = (stimulusController: Controller, options: RenderOptions
     },
 
     __render() {
-      render(renderMethod?.call(controller) || EMPTY_HTML, controller.element as HTMLElement, options)
-    }
+      render(
+        renderMethod?.call(controller) || EMPTY_HTML,
+        container || (controller.element as HTMLElement),
+        renderOptions
+      )
+    },
   })
 
   Object.keys(constructor.values).forEach((value) => {
@@ -42,7 +51,7 @@ export const useRender = (stimulusController: Controller, options: RenderOptions
         controller.__rerender()
       }
     } else {
-      assignments[methodName] = () => (controller.__rerender())
+      assignments[methodName] = () => controller.__rerender()
     }
 
     Object.assign(controller, assignments)
