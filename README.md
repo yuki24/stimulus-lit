@@ -104,13 +104,15 @@ Then this controller will render the HTML below and the counter will increment w
 
 ### Specifying Where to Render
 
+#### `@renderBefore`
+
 By default, `stimulus-lit` renders the template at the end of the controller host. You could change this by providing
 a `renderBefore` option:
 
 ```html
 <div data-controller="counter">
   <div data-counter-target="container">
-    This is a counter.
+     <!-- This is the element specified as `renderBefore` -->
   </div>
 </div>
 ```
@@ -122,22 +124,13 @@ import { useRender, html } from 'stimulus-lit'
 
 export default class extends Controller {
   static targets = ["container"]
-  static values = { counter: 1 }
 
   connect () {
     useRender(this, { renderBefore: this.containerTarget })
   }
 
-  increment () {
-    this.counterValue += 1
-  }
-
   render () {
-    return html`
-     <button @click="${this.increment}">
-       Count: ${this.counterValue}
-     </button>
-    `
+    return html`<span>Hello world!</span>`
   }
 }
 ```
@@ -146,18 +139,64 @@ Which will render:
 
 ```html
 <div data-controller="counter">
-  <button>
-    Count: 0
-  </button>
+  <span>
+    Hello world!
+  </span>
 
   <div data-counter-target="container">
-    This is a counter.
+     <!-- This is the element specified as `renderBefore` -->
   </div>
 </div>
 ```
 
 The second argument of `useRender` is an [`RenderOptions`](https://lit.dev/docs/api/LitElement/#RenderOptions) object.
 Which means you can also use other options than `renderBefore`, such as `creationScope`,`host` and `isConnected`.
+
+#### `container`
+
+You can also change the container element where the HTML will be rendered to, with the `container` option:
+
+```html
+<div data-controller="counter">
+  <!-- other elements... -->
+
+  <div data-counter-target="container">
+     <!-- This is the element specified as `container` -->
+  </div>
+</div>
+```
+
+```js
+// app/javascript/controllers/counter_controller.js
+import { Controller } from '@hotwired/stimulus'
+import { useRender, html } from 'stimulus-lit'
+
+export default class extends Controller {
+  static targets = ["container"]
+
+  connect () {
+    useRender(this, { container: this.containerTarget })  // Notice the `container` option here.
+  }
+
+  render () {
+    return html`<span>Hello world!</span>`
+  }
+}
+```
+
+Which will render:
+
+```html
+<div data-controller="counter">
+  <!-- other elements... -->
+
+  <div data-counter-target="container">
+    <span>
+      Hello world!
+    </span>
+  </div>
+</div>
+```
 
 ## License
 
