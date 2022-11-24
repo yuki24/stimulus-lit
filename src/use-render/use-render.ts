@@ -1,13 +1,12 @@
-import { Controller } from "@hotwired/stimulus"
-import { html, render, RenderOptions } from "lit-html"
+import { render } from "lit-html"
+import type { Controller } from "@hotwired/stimulus"
+import type { RenderOptions } from "lit-html"
 
 import { method, camelize } from "../support"
 
-const EMPTY_HTML = html``
-
-class RenderController extends Controller {
-  declare __render: () => void
-  declare __rerender: () => void
+interface RenderController extends Controller<HTMLElement> {
+  __render: () => void
+  __rerender: () => void
 }
 
 interface UseRenderOptions extends RenderOptions {
@@ -31,11 +30,7 @@ export const useRender = (stimulusController: Controller, options: UseRenderOpti
     },
 
     __render() {
-      render(
-        renderMethod?.call(controller) || EMPTY_HTML,
-        container || (controller.element as HTMLElement),
-        renderOptions
-      )
+      render(renderMethod?.call(controller), container || controller.element, renderOptions)
     },
   })
 
