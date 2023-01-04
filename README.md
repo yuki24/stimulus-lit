@@ -7,9 +7,11 @@ Stimulus Lit provides the ability to reactively render HTML templates using [Lit
 
 1. **No transpiler required:** Stimulus Lit uses the native browser API to render HTML templates (through
    [`lit-html`](https://lit.dev/docs/libraries/standalone-templates/)).
-2. **Accepts the Lit APIs:** You can use Lit's
-   [more flexible and intuitive expressions](https://lit.dev/docs/templates/expressions/), including `renderBefore`
-   for controlling where the conrtoller will render the HTML.
+2. **Reactive rendering we are all familiar with**: Did you miss reactive rendering like you used to with React? This
+   library has you covered. Use Stimulus values like React's state and you can reactively render anything.
+3. **Faster and smaller than React:** Did you know
+   [virtual DOM libraries like React are actually slower](https://codelabs.developers.google.com/codelabs/lit-2-for-react-devs#1)?
+   Bonus point for being smaller (**5kb** minified and gzipped) than React (40+kb).
 
 ## Getting Started
 
