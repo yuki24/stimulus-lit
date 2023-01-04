@@ -106,7 +106,7 @@ Then this controller will render the HTML below and the counter will increment w
 
 ### Specifying Where to Render
 
-#### `@renderBefore`
+#### `renderBefore`
 
 By default, `stimulus-lit` renders the template at the end of the controller host. You could change this by providing
 a `renderBefore` option:
