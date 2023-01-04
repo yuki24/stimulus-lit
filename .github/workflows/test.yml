@@ -13,7 +13,7 @@ jobs:
   js:
     runs-on: ubuntu-22.04
     container:
-      image: mcr.microsoft.com/playwright:v1.28.0-focal
+      image: mcr.microsoft.com/playwright:v1.29.1-focal
       options: --user 1001
     steps:
       - uses: actions/checkout@v3
