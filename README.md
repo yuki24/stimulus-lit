@@ -15,6 +15,14 @@ Stimulus Lit provides the ability to reactively render HTML templates using [Lit
 
 ## Getting Started
 
+npm:
+
+```bash
+npm install stimulus-lit lit-html
+```
+
+yarn:
+
 ```bash
 yarn add stimulus-lit lit-html
 ```
